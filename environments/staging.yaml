@@ -2,7 +2,7 @@ arch: arm64
 
 image:
   repository: 795250896452.dkr.ecr.us-east-1.amazonaws.com/cloud-ops/my-app
-  tag: git-${DRONE_COMMIT_SHA:0:7}
+  tag: ${DRONE_COMMIT_SHA}
 
 env:
   APP_MESSAGE: Hello, MongoDB!
