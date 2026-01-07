@@ -1,20 +1,12 @@
 arch: arm64
 
-replicaCount: 2
-
 image:
-  repository: 795250896452.dkr.ecr.us-east-1.amazonaws.com/cloud-ops/my-app
-
-ingress:
-  enabled: true
-  hosts:
-    - my-app.cloud-ops.staging.corp.mongodb.com
-
-mesh:
-  enabled: true
+  tag: git-8245d3a
 
 env:
   APP_MESSAGE: Hello, MongoDB!
 
 envSecrets:
   APP_SECRET: my-secrets
+
+replicaCount: 1
