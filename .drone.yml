@@ -1,3 +1,32 @@
+kind: pipeline
+type: kubernetes
+name: default
+
+platform:
+  arch: arm64
+
+trigger:
+  branch:
+    - main
+
+steps:
+  - name: publish
+    image: plugins/kaniko-ecr
+    settings:
+      create_repository: true
+      registry: 795250896452.dkr.ecr.us-east-1.amazonaws.com
+      repo: cloud-ops/${DRONE_REPO_NAME}
+      tags:
+        - git-${DRONE_COMMIT_SHA:0:7}
+        - latest
+      access_key:
+        from_secret: ecr_access_key
+      secret_key:
+        from_secret: ecr_secret_key
+    when:
+      event:
+        - push
+
   - name: deploy-staging
     image: public.ecr.aws/kanopy/drone-helm:v3
     settings:
@@ -29,4 +58,3 @@
     when:
       event:
         - push
-
