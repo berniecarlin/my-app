@@ -1,3 +1,5 @@
+replicaCount: 2
+
 arch: arm64
 
 image:
