@@ -18,7 +18,7 @@ steps:
       registry: 795250896452.dkr.ecr.us-east-1.amazonaws.com
       repo: cloud-ops/${DRONE_REPO_NAME}
       tags:
-        - git-${DRONE_COMMIT_SHA:0:7}
+        - ${DRONE_COMMIT_SHA_SHORT}
         - latest
       access_key:
         from_secret: ecr_access_key
@@ -39,6 +39,11 @@ steps:
       release: my-app
       values_files:
         - environments/staging.yaml
+      values: >
+        image.tag=${DRONE_COMMIT_SHA_SHORT},
+        ingress.enabled=true,
+        ingress.hosts[0]=my-app.cloud-ops.staging.corp.mongodb.com,
+        mesh.enabled=true
       api_server: https://api.staging.corp.mongodb.com
       kubernetes_token:
         from_secret: staging_kubernetes_token
