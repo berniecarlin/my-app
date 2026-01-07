@@ -1,3 +1,4 @@
+---
 kind: pipeline
 type: kubernetes
 name: default
@@ -36,22 +37,8 @@ steps:
         - mongodb=https://10gen.github.io/helm-charts
       namespace: cloud-ops
       release: my-app
-
-      values:
-        arch: arm64
-        image:
-          repository: 795250896452.dkr.ecr.us-east-1.amazonaws.com/cloud-ops/${DRONE_REPO_NAME}
-          tag: git-${DRONE_COMMIT_SHA:0:7}
-        ingress:
-          enabled: true
-          hosts:
-            - my-app.cloud-ops.staging.corp.mongodb.com
-        mesh:
-          enabled: true
-
       values_files:
         - environments/staging.yaml
-
       api_server: https://api.staging.corp.mongodb.com
       kubernetes_token:
         from_secret: staging_kubernetes_token
