@@ -1,2 +1,16 @@
+arch: arm64
+
+image:
+  repository: 795250896452.dkr.ecr.us-east-1.amazonaws.com/cloud-ops/my-app
+  tag: latest
+
+ingress:
+  enabled: true
+  hosts:
+    - my-app.cloud-ops.staging.corp.mongodb.com
+
+mesh:
+  enabled: true
+
 env:
     APP_MESSAGE: Hello, MongoDB!

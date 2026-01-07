@@ -38,13 +38,10 @@ steps:
       namespace: cloud-ops
       release: my-app
 
-      values: >
-        arch=arm64,
-        image.repository=795250896452.dkr.ecr.us-east-1.amazonaws.com/cloud-ops/${DRONE_REPO_NAME},
-        image.tag=git-${DRONE_COMMIT_SHA:0:7},
-        ingress.enabled=true,
-        ingress.hosts[0]=my-app.cloud-ops.staging.corp.mongodb.com,
-        mesh.enabled=true
+      values_files:
+      - environments/staging.yaml
+    values:
+      - image.tag=git-${DRONE_COMMIT_SHA:0:7}
 
       values_files:
         - environments/staging.yaml
