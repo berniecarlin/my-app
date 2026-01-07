@@ -40,10 +40,7 @@ steps:
       values_files:
         - environments/staging.yaml
       values: >
-        image.tag=${DRONE_COMMIT_SHA},
-        ingress.enabled=true,
-        ingress.hosts[0]=my-app.cloud-ops.staging.corp.mongodb.com,
-        mesh.enabled=true
+        image.tag=${DRONE_COMMIT_SHA}
       api_server: https://api.staging.corp.mongodb.com
       kubernetes_token:
         from_secret: staging_kubernetes_token
