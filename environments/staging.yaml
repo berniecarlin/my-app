@@ -1,12 +1,7 @@
-arch: arm64
-
-image:
-  tag: git-8245d3a
+replicaCount: 2
 
 env:
   APP_MESSAGE: Hello, MongoDB!
 
 envSecrets:
   APP_SECRET: my-secrets
-
-replicaCount: 1
