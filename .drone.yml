@@ -37,15 +37,8 @@ steps:
         - mongodb=https://10gen.github.io/helm-charts
       namespace: cloud-ops
       release: my-app
-
-      values_files:
-      - environments/staging.yaml
-    values:
-      - image.tag=git-${DRONE_COMMIT_SHA:0:7}
-
       values_files:
         - environments/staging.yaml
-
       api_server: https://api.staging.corp.mongodb.com
       kubernetes_token:
         from_secret: staging_kubernetes_token
